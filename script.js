@@ -1,7 +1,7 @@
 // generate random password
 ///first question on length of password
 var passwordLength = prompt('choose length of password from 8 to 128')
-   console.log (passwordLength)
+   //console.log (passwordLength) prompt worked at this point
    //conditions that password length is between 8 and 128
    if (passwordLength < 8) {
      alert("Password must be at least 8 characters, try again")
@@ -22,7 +22,20 @@ var passwordLength = prompt('choose length of password from 8 to 128')
   var lowercaseLetters = confirm("Do you want lower case letters?")
   var numbers = confirm("Do you want numbers?")
   var symbols = confirm("Do you want symbols?")
-  
+
+  //if above is confirmed then using UTF-16 code units per 'DEV Community' website
+  function getRandomuppercaseLetters(){
+    return String.fromCharCode(Math.floor(Math.random()*26)+65);
+  }
+  function getRandomlowercaseLetters(){
+    return String.fromCharCode(Math.floor(Math.random()*26)+65);
+  }
+  function getRandomnumbers(){
+    return String.fromCharCode(Math.floor(Math.random()*10)+48);
+  }
+  function getRandomsymbols(){
+    return symbols(Math.floor(Math.random()*symbols.length);
+  }
   //Password choosen characters
    var password = generatePassword(uppercaseLetters, lowercaseLetters, numbers, symbols) {
      let generatePassword = ''
