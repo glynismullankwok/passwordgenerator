@@ -1,62 +1,80 @@
-// generate random password
-///first question on length of password
-var passwordLength = prompt('choose length of password from 8 to 128')
-   //console.log (passwordLength) prompt worked at this point
-   //conditions that password length is between 8 and 128
-   if (passwordLength < 8) {
-     alert("Password must be at least 8 characters, try again")
-   }
-   else if (passwordLength > 128) {
-     alert("Password must be less than 128 characters, try again")
-   }
-   let passwordLength = ''
 
-  //arrays of possible password characters
-  var uppercaseLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-  var lowercaseLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  var numbers = ['0','1','2','3','4','5','6','7','8','9'];
-  var symbols = ['@','#','$','*'];
-  
-  //mark box prompts to confirm whether or not 
-  var uppercaseLetters = confirm("Do you want upper case letters?")
-  var lowercaseLetters = confirm("Do you want lower case letters?")
-  var numbers = confirm("Do you want numbers?")
-  var symbols = confirm("Do you want symbols?")
+//arrays of possible password characters
+var uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+var numbers = '1234567890';
+var symbols = '!@#$^&%*()+=-[]{}|:<>?,.';
 
-  //if above is confirmed then using UTF-16 code units per 'DEV Community' website
-  function getRandomuppercaseLetters(){
-    return String.fromCharCode(Math.floor(Math.random()*26)+65);
-  }
-  function getRandomlowercaseLetters(){
-    return String.fromCharCode(Math.floor(Math.random()*26)+65);
-  }
-  function getRandomnumbers(){
-    return String.fromCharCode(Math.floor(Math.random()*10)+48);
-  }
-  function getRandomsymbols(){
-    return symbols(Math.floor(Math.random()*symbols.length);
-  }
-  //Password choosen characters
-   var password = generatePassword(uppercaseLetters, lowercaseLetters, numbers, symbols) {
-     let generatePassword = ''
-   }
+var password = '';
 
-  //loop to choose password characters
-    for (var i = 0; i <=length; i++) {
-      var randomPassword = generatePassword (Math.floor(Math.random() * passwordLength));
-      password += chars.substring(randomPassword,randomPassword+1);
+var uppercaseLettersChoice = false;
+var lowercaseLettersChoice = false;
+var numbersChoice = false;
+var symbolsChoice = false;
+
+//function to generate password
+
+function generate() {
+  var confirmLength = '';
+  //must make sure password character length between 8 and 128
+  while (isNaN(confirmLength) || confirmLength < 8 || confirmLength > 128) {
+    confirmLength = prompt("What length would you like the password to be? (Between 8 to 128 characters)");
+    if (confirmLength === null) {
+      break;
+    }
+  }
+  //user choice for character types to use in the password
+  if (confirmLength) {
+    if (confirm("Would you like to use uppercase characters?") == true) {
+      uppercaseLettersChoice = true
     }
 
-    //plan to have the password characters randomly choosen, however unsure how to
-    //
+    if (confirm("Would you like to use lowercase characters?") == true) {
+      lowercaseLettersChoice = true
+    }
+
+    if (confirm("Would you like to use numbers") == true) {
+      numbersChoice = true
+    }
+
+    if (confirm("Would you like to use symbols?") == true) {
+      symbolsChoice = true
+    }
+    //if none of the character types are selected, alerts the user to choose at least one
+    if (lowerSelection === false && upperSelection === false && specialSelection === false && numberSelection === false) {
+      alert("At least one character type must be selected")
+    }
+  }
+  //generate random password
+  var characters = '';
+  characters += (uppercaseLettersChoice ? uppercaseLetters : '');
+  characters += (lowercaseLettersChoice ? lowercaseLetters : '');
+  characters += (numbersChoice ? numbers : '');
+  characters += (symbolsChoice ? symbols : '');
+
+  pwd = password(confirmLength, characters);
+
+  document.getElementById("password").innerHTML = pwd;
+
+}
+
+function password(l, characters) {
+  var pwd = '';
+  for (var i = 0; i < l; ++i) {
+    pwd += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return pwd;
+}
+//function to copy password to computer clipboard
+function copied() {
+  document.getElementById("password").select();
+  document.execCommand("copy");
+  alert("The password has been copied to your clipboard!");
+}
 
 
-//document.getElementById("password").value = password
-  // Add event listener to generate button
-  //document.getElementById.addEventListener 
- 
-    
-    
+
+
 
 
 
